@@ -1,5 +1,7 @@
 create schema if not exists tasklist;
 
+drop table if exists users, tasks, users_tasks, users_roles;
+
 create table if not exists users
 (
     id bigserial primary key,
