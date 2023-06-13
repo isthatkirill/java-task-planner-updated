@@ -2,7 +2,7 @@ package isthatkirill.tasklist.repository.impl;
 
 import isthatkirill.tasklist.domain.task.Task;
 import isthatkirill.tasklist.repository.TaskRepository;
-import isthatkirill.tasklist.repository.mapper.TaskRowMapper;
+import isthatkirill.tasklist.repository.mapper.EntityRowMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -51,10 +51,9 @@ public class TaskRepositoryImpl implements TaskRepository {
             INSERT INTO tasks (title, description, expiration_date, status)
             VALUES(?, ?, ?, ?)""";
 
-
     @Override
     public Optional<Task> findById(Long id) {
-        List<Task> tasks = jdbcTemplate.query(FIND_BY_ID, TaskRowMapper.TASK_MAPPER, id);
+        List<Task> tasks = jdbcTemplate.query(FIND_BY_ID, EntityRowMapper.TASK_MAPPER, id);
         if (tasks.isEmpty()) {
             return Optional.empty();
         }
@@ -64,12 +63,12 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public List<Task> findAllByUserId(Long userId) {
-        return jdbcTemplate.query(FIND_ALL_BY_USER_ID, TaskRowMapper.TASK_MAPPER, userId);
+        return jdbcTemplate.query(FIND_ALL_BY_USER_ID, EntityRowMapper.TASK_MAPPER, userId);
     }
 
     @Override
     public void assignToUser(Long taskId, Long userId) {
-        jdbcTemplate.query(ASSIGN_TASK, TaskRowMapper.TASK_MAPPER, userId, taskId);
+        jdbcTemplate.query(ASSIGN_TASK, EntityRowMapper.TASK_MAPPER, userId, taskId);
 
     }
 
@@ -97,12 +96,6 @@ public class TaskRepositoryImpl implements TaskRepository {
 
         Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
         task.setId(id.longValue());
-
-        jdbcTemplate.update(CREATE,
-                task.getTitle(),
-                task.getDescription(),
-                Timestamp.valueOf(task.getExpirationDate()),
-                task.getStatus().toString());
     }
 
     @Override
