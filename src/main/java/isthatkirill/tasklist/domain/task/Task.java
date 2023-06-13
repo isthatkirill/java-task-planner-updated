@@ -1,10 +1,12 @@
 package isthatkirill.tasklist.domain.task;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 public class Task {
 
     private Long id;

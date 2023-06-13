@@ -1,6 +1,6 @@
-create schema if not exists tasklist;
-
 drop table if exists users, tasks, users_tasks, users_roles;
+
+create schema if not exists tasklist;
 
 create table if not exists users
 (

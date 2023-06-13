@@ -1,7 +1,6 @@
 package isthatkirill.tasklist.service.impl;
 
 import isthatkirill.tasklist.domain.exception.EntityNotFoundException;
-import isthatkirill.tasklist.domain.task.Task;
 import isthatkirill.tasklist.domain.user.Role;
 import isthatkirill.tasklist.domain.user.User;
 import isthatkirill.tasklist.repository.UserRepository;

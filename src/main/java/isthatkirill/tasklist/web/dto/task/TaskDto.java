@@ -34,6 +34,7 @@ public class TaskDto {
 
     private Status status;
 
+    @NotNull(message = "Expiration date cannot be null")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime expirationDate;
