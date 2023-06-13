@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JwtEntityFactory {
+public class JwtUserFactory {
 
-    public static JwtEntity create(User user) {
-        return new JwtEntity(
+    public static JwtUser create(User user) {
+        return new JwtUser(
                 user.getId(),
                 user.getUsername(),
                 user.getName(),
@@ -26,6 +26,5 @@ public class JwtEntityFactory {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
-
 
 }

@@ -9,7 +9,7 @@ import java.util.Collection;
 
 @Data
 @AllArgsConstructor
-public class JwtEntity implements UserDetails {
+public class JwtUser implements UserDetails {
 
     private Long id;
     private final String username;
