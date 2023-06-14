@@ -1,8 +1,10 @@
 package isthatkirill.tasklist.domain.user;
 
 import isthatkirill.tasklist.domain.task.Task;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
@@ -10,6 +12,8 @@ import java.util.Set;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     private Long id;

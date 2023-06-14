@@ -42,6 +42,9 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional
     public Task create(Task task, Long userId) {
+        if (task.getStatus() == null) {
+            task.setStatus(Status.NEW);
+        }
         taskRepository.create(task);
         taskRepository.assignToUser(task.getId(), userId);
         return task;

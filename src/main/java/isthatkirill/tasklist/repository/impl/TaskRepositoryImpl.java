@@ -68,7 +68,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public void assignToUser(Long taskId, Long userId) {
-        jdbcTemplate.query(ASSIGN_TASK, EntityRowMapper.TASK_MAPPER, userId, taskId);
+        jdbcTemplate.update(ASSIGN_TASK,  userId, taskId);
 
     }
 
@@ -91,7 +91,7 @@ public class TaskRepositoryImpl implements TaskRepository {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("title", task.getTitle());
         parameters.put("description", task.getDescription());
-        parameters.put("status", task.getStatus().toString());
+        parameters.put("status", task.getStatus().name());
         parameters.put("expiration_date", Timestamp.valueOf(task.getExpirationDate()));
 
         Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
